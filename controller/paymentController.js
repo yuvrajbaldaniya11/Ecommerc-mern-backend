@@ -11,25 +11,26 @@ let productInfo = {};
 let userData = {};
 let userInfo;
 let totalAmount;
-// const instance = new Razorpay({
-//   key_id: process.env.RAZORPAY_API_KEY,
-//   key_secret: process.env.RAZORPAY_API_SECRET,
-// });
+
+const instance = new Razorpay({
+  key_id: process.env.RAZORPAY_API_KEY,
+  key_secret: process.env.RAZORPAY_API_SECRET,
+});
 const checkout = async (req, res) => {
 
   try {
-    // const { amount, userId, productDetails, userDetails } = req.body
-    // totalAmount = Number(amount)
-    // userInfo = userId
-    // productInfo = JSON.parse(productDetails)
-    // userData = JSON.parse(userDetails)
+    const { amount, userId, productDetails, userDetails } = req.body
+    totalAmount = Number(amount)
+    userInfo = userId
+    productInfo = JSON.parse(productDetails)
+    userData = JSON.parse(userDetails)
 
 
-    // const options = {
-    //   amount: Number(amount * 100),
-    //   currency: "INR",
-    // };
-    // const order = await instance.orders.create(options);
+    const options = {
+      amount: Number(amount * 100),
+      currency: "INR",
+    };
+    const order = await instance.orders.create(options);
 
     
 
@@ -37,7 +38,7 @@ const checkout = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      // order
+      order
     });
 
   } catch (error) {
@@ -46,7 +47,7 @@ const checkout = async (req, res) => {
 
 
 };
-// 
+
 
 const paymentVerification = async (req, res) => {
 
