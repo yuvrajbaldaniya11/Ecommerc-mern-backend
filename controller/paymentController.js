@@ -31,11 +31,6 @@ const checkout = async (req, res) => {
       currency: "INR",
     };
     const order = await instance.orders.create(options);
-
-    
-
-    console.log("Payment Getway is temporary Closed from Mihir");
-
     res.status(200).json({
       success: true,
       order
